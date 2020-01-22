@@ -1,0 +1,48 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font: 21px Helvetica, Arial; 
+}
+
+form {   
+    position: fixed; 
+    bottom: 0; 
+    width: 100%;  
+    border: 3px solid dodgerblue;
+    display: flex;
+}
+
+form input { 
+    border: 0; 
+    padding: 10px;
+    flex-grow: 6;
+    font-size: 21px;
+}
+
+form button { 
+    background: dodgerblue; 
+    border: none; 
+    padding: 10px; 
+    color: white;
+    flex-grow: 1; 
+    font-size: 21px;
+}
+
+#messages { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+}
+
+#messages li { 
+    padding: 7px 10px; 
+}
+
+#messages li:nth-child(odd) { 
+    background: dodgerblue; 
+    color: white; 
+}

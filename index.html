@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link type="text/css" rel="stylesheet" href="/css/style.css">
+        <title>Socket test app</title>
+    </head>
+    <body>
+        <ul id="messages"></ul>
+        <form id="form" action="">
+            <input id="msg" autocomplete="off" />
+            <button>Send</button>
+        </form>
+
+        <!-- scripts -->
+        <script src='http://localhost:3000/socket.io/socket.io.js'></script>
+       
+        <script>
+            let socket = io('http://localhost:3000');
+            let form = document.getElementById('form');
+            let messageList = document.getElementById('messages');
+            let message = document.getElementById('msg');
+
+            let name = prompt("What is your name?");
+            socket.emit('new_user', name);
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                socket.emit('msgFromClient', {message:message.value, name:name});
+                message.value = '';
+            })
+
+            socket.on('msgToClient', function(data) {
+                const newMessage = document.createElement('li');
+                newMessage.innerText = `${data.name}: ${data.message}`;
+                messageList.append(newMessage);
+            })
+
+            
+        </script>
+
+    </body>
+</html>
